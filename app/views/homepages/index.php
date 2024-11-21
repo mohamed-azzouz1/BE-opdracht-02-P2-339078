@@ -9,6 +9,7 @@
 
             <a href="<?= URLROOT; ?>/instructeurs/index">Instructeurs</a> |
             <a href="<?= URLROOT; ?>/jamin/index">Overzicht Magazijn Jamin</a> |
+            <a href="<?= URLROOT; ?>/leverancieroverzicht/index">Overzicht Leverancier Jamin</a> |
 
 
         </div>
