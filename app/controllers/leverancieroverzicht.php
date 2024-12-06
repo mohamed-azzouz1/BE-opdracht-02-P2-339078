@@ -76,6 +76,53 @@ class leverancieroverzicht extends BaseController
         } else {
             $data['dataRows'] = $Leverantieinfo;
         }
+         header('Refresh:3; ' . URLROOT . '/homepages/index');
+
+        /**
+         * Met de view-method uit de BaseController-class wordt de view
+         * aangeroepen met de informatie uit het $data-array
+         */
+        $this->view('leverancier/leverancier_overzicht', $data);
+    }
+
+    public function LeverantieProductinfo($ProductId)
+    {
+        /**
+         * Het $data-array geeft informatie mee aan de view-pagina
+         */
+        $data = [
+            'ProductNaam' =>''
+            ,'LeverancierNaam' => ''
+            ,'ContactPersoon' => ''
+            ,'LeverancierNummer' => ''
+            ,'Mobiel' => ''
+            ,'AantalAanwezig' => ''
+            ,'VerpakkingsEenheid' => ''
+            ,'DatumLevering' => ''
+            ,'dataRows' => ''
+            ,'message' => ''
+            ,'messageColor' => ''
+            ,'messageVisibility' => ''
+        ];
+    
+
+            
+        $LeverantieProductinfo = $this->LevarancierModel->getLeverantieProductinfo($ProductId);
+
+        
+
+
+        if (is_null($LeverantieProductinfo)) {
+            $data['message'] = "Er is een fout opgetreden";
+            $data['messageColor'] = "danger";
+            $data['messageVisibility'] = "flex";
+            $data['dataRows'] = NULL;
+
+            header('Refresh:3; ' . URLROOT . '/homepages/index');
+
+        } else {
+            $data['dataRows'] = $LeverantieProductinfo;
+        }
 
         /**
          * Met de view-method uit de BaseController-class wordt de view

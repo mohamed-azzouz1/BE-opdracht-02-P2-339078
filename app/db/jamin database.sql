@@ -150,7 +150,8 @@ Id 							int 			unsigned 	not null 	auto_increment
 ,foreign key(LeverancierId) references Leverancier(Id)
 ,foreign key(ProductId) references Product(Id)
 );
-insert into ProductPerLeverancier(LeverancierId
+insert into ProductPerLeverancier(
+LeverancierId
 ,ProductId
 ,DatumLevering
 ,Aantal

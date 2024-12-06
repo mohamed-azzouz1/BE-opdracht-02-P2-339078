@@ -52,8 +52,9 @@
                                 <td><?= $leverancier->Mobiel ?></td>
                                 <td><?= $leverancier->ProductCount ?></td>
                                 <td class='text-center'>
-                                    <a href='<?= URLROOT . "/leverancier/leverancier_overzicht/" ?>'>
-                                        <i class="bi bi-box"></i>                                    </a>
+                                    <a href='<?= URLROOT . "/leverancieroverzicht/LeverantieProductinfo/{$leverancier->LeverancierId}" ?>'>
+                                        <i class="bi bi-box"></i>                                    
+                                    </a>
                                 </td>            
                                 </tr>
                     <?php } } ?>
