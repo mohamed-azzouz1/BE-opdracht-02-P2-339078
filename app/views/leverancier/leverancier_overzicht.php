@@ -41,10 +41,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (is_null($data['dataRows'])||is_null($data['dataRows'][0]->ProductNaam)) { ?>
+                    <?php if (is_null($data['dataRows'])||is_null($data['dataRows'][0]->ProductNaam)) {
+                                    header('Refresh:3; ' . URLROOT . '/homepages/index');
+                                    ?>
                               <tr>
                                 <td colspan='6' class='text-center bg-danger'>Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin</td>
                               </tr>
+                              
                     <?php } else {                              
                               foreach ($data['dataRows'] as $leverancierProduct) {
                                 ?>
@@ -59,7 +62,6 @@
                                     </a>
                                 </td>            
                             </tr>
-                                <!-- <td><?= $leverancierProduct->ProductCount ?></td> -->
                     <?php } } ?>
                 </tbody>
             </table>

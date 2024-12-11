@@ -111,7 +111,6 @@ class leverancieroverzicht extends BaseController
 
         
 
-
         if (is_null($LeverantieProductinfo)) {
             $data['message'] = "Er is een fout opgetreden";
             $data['messageColor'] = "danger";
