@@ -74,6 +74,52 @@ class Levarancier
         }
     }
 
+    public function getnieuwelevering($LevId)
+    {
+        try {
+            $sql = "CALL spReadNieuwlevering(:LevId)";
+    
+            $this->db->query($sql);
+    
+            // Bind de parameter
+            $this->db->bind(':LevId', $LevId, PDO::PARAM_INT);
+    
+            // Voer de query uit en retourneer het resultaat
+            return $this->db->resultSet();
+    
+        } catch (Exception $e) {
+            // Log de error in de functie logger()
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function createnieuwelevering($aantal, $datumEerstVolgendeLevering)
+    {
+        try {
+            $sql = "CALL spAddLeverancier(:Aantal, :DatumEerstVolgendeLevering)";
+    
+            $this->db->query($sql);
+    
+            // Bind de parameters
+            $this->db->bind(':Aantal', $aantal, PDO::PARAM_INT);
+            $this->db->bind(':DatumEerstVolgendeLevering', $datumEerstVolgendeLevering, PDO::PARAM_STR);
+    
+            // Voer de query uit
+            $this->db->execute();
+    
+            // Retourneer het resultaat
+            return $this->db->resultSet();
+    
+        } catch (Exception $e) {
+            // Log de error in de functie logger()
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            return false;
+        }
+    }
+
+
     public function getallergeninfo($GivenProductId)
     {
         try {

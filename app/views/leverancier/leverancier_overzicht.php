@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     <?php if (is_null($data['dataRows'])||is_null($data['dataRows'][0]->ProductNaam)) {
-                                    header('Refresh:3; ' . URLROOT . '/homepages/index');
+                                    header('Refresh:3; ' . URLROOT . '/leverancier/index');
                                     ?>
                               <tr>
                                 <td colspan='6' class='text-center bg-danger'>Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin</td>

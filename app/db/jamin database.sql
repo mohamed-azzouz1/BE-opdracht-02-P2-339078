@@ -34,10 +34,10 @@ create table Allergeen (
 Id 				        int 			unsigned 	not null 	auto_increment
 ,naam 			        varchar(255) 				not null 
 ,Omschrijving 	        varchar(255) 		 		not null
-,IsActief 				Bit 				not null 	default 1
-,Opmerking 				Varchar(255) 		null 		default null
-,DatumAangemaakt 		Datetime(6) 		not null 	default NOW(6)
-,DatumGewijzigd 		Datetime(6) 		not null 	default NOW(6)
+,IsActief 				Bit 				        not null 	default 1
+,Opmerking 				Varchar(255) 		        null 		default null
+,DatumAangemaakt 		Datetime(6) 		        not null 	default NOW(6)
+,DatumGewijzigd 		Datetime(6) 		        not null 	default NOW(6)
 ,primary key (Id)
 );
 INSERT INTO Allergeen ( naam
@@ -140,7 +140,7 @@ Id 							int 			unsigned 	not null 	auto_increment
 ,LeverancierId				int 			unsigned 	not null 	
 ,ProductId					int 			unsigned 	not null 	
 ,DatumLevering 				date						not null
-,Aantal 					int							not null
+,Aantal 					int				unsigned	not null
 ,DatumEerstVolgendeLevering date						null     	default null
 ,IsActief 					Bit 						not null 	default 1
 ,Opmerking 					Varchar(255) 				null 		default null
