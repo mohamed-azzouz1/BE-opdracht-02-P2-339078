@@ -16,7 +16,7 @@ class leverancierupdate extends BaseController
          * naar de view
          */
         $data = [
-            'title' => 'Overzicht Leverancier Jamin'
+            'title' => 'Update Leverancier Jamin'
             ,'dataRows' => ''
             ,'message' => ''
             ,'messageColor' => ''

@@ -17,7 +17,7 @@
     <div class="row mt-3">
         <div class="col-2"></div>
         <div class="col-8">
-            <h3><?php echo $data['title']; ?></h3>
+            <h3><?= $data['title']; ?></h3>
         </div>
         <div class="col-2"></div>
     </div>
@@ -42,16 +42,16 @@
                                 <td colspan='6' class='text-center'>Door een storing kunnen we op dit moment geen producten tonen uit het magazijn</td>
                               </tr>
                     <?php } else {                              
-                              foreach ($data['dataRows'] as $leverancier) {
+                              foreach ($data['dataRows'] as $leverancierUpdate) {
                                 ?>
                                 <tr>
-                                <td><?= $leverancier->LeverancierNaam ?></td>
-                                <td><?= $leverancier->ContactPersoon ?></td>
-                                <td><?= $leverancier->LeverancierNummer ?></td>
-                                <td><?= $leverancier->Mobiel ?></td>
+                                <td><?= $leverancierUpdate->LeverancierNaam ?></td>
+                                <td><?= $leverancierUpdate->ContactPersoon ?></td>
+                                <td><?= $leverancierUpdate->LeverancierNummer ?></td>
+                                <td><?= $leverancierUpdate->Mobiel ?></td>
                                 <td class='text-center'>
-                                    <a href='<?= URLROOT . "/leverancieroverzicht/LeverantieProductinfo/{$leverancier->LeverancierId}" ?>'>
-                                        <i class="bi bi-box"></i>                                    
+                                    <a href='<?= URLROOT . "/leverancieroverzicht/LeverantieProductinfo/{$leverancierUpdate->LeverancierId}" ?>'>
+                                        <i class="bi bi-pencil"></i>
                                     </a>
                                 </td>            
                                 </tr>
