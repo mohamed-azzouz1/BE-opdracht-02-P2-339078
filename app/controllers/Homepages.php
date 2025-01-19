@@ -10,7 +10,7 @@ class Homepages extends BaseController
          */
         $data = [
             'title' => 'Dit is de homepage!',
-            'name' => 'Mijn naam is Arjan de Ruijter'
+            'name' => 'Mijn naam is mohamed azzouz',
         ];
 
         /**

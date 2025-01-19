@@ -50,28 +50,56 @@ INSERT INTO Allergeen ( naam
 );
 
 
-create table Leverancier (
-Id 					int 			unsigned 	not null auto_increment
-,naam 				varchar(255) 				not null 
-,ContactPersoon 	varchar(255) 		 		not null
-,LeverancierNummer  varchar(11)					not null
-,Mobiel      		varchar(11) 				not null
-,IsActief 			Bit 						not null 	default 1
-,Opmerking 			Varchar(255) 				null 		default null
-,DatumAangemaakt 	Datetime(6) 				not null 	default NOW(6)
-,DatumGewijzigd 	Datetime(6) 				not null 	default NOW(6)
-,primary key (Id)
+CREATE TABLE Contact (
+ Id                     INT UNSIGNED                NOT NULL    AUTO_INCREMENT
+,Straat                 VARCHAR(255)                NOT NULL
+,Huisnummer             VARCHAR(10)                 NOT NULL
+,Postcode               VARCHAR(10)                 NOT NULL
+,Stad                   VARCHAR(255)                NOT NULL
+,IsActief 			   	Bit 				        not null 	default 1
+,Opmerking 				Varchar(255) 		        null 		default null
+,DatumAangemaakt 		Datetime(6) 		        not null 	default NOW(6)
+,DatumGewijzigd 		Datetime(6) 		        not null 	default NOW(6)
+,PRIMARY KEY (Id)
 );
-INSERT INTO Leverancier ( naam
+INSERT INTO Contact (
+Straat
+,Huisnummer
+,Postcode
+,Stad
+) VALUES('Van Gilslaan', '34', '1045CB', 'Hilvarenbeek'
+),('Den Dolderpad', '2', '1067RC', 'Utrecht'
+),('Fredo Raalteweg', '257', '1236OP', 'Nijmegen'
+),('Bertrand Russellhof', '21', '2034AP', 'Den Haag'
+),('Leon van Bonstraat', '213', '145XC', 'Lunteren'
+),('Bea van Lingenlaan', '234', '2197FG', 'Sint Pancras'
+);
+
+create table Leverancier (
+Id 					    int 			unsigned 	not null    auto_increment
+,ContactId			    int 			unsigned 	not null    
+,naam 				    varchar(255) 				not null 
+,ContactPersoon 	    varchar(255) 		 		not null
+,LeverancierNummer      varchar(11)					not null
+,Mobiel      		    varchar(11) 				not null
+,IsActief 			    Bit 						not null 	default 1
+,Opmerking 			    Varchar(255) 				null 		default null
+,DatumAangemaakt 	    Datetime(6) 				not null 	default NOW(6)
+,DatumGewijzigd 	    Datetime(6) 				not null 	default NOW(6)
+,primary key (Id)
+,FOREIGN KEY (ContactId) REFERENCES contact(id)
+);
+INSERT INTO Leverancier ( ContactId 
+,naam
 ,ContactPersoon
 ,LeverancierNummer
 ,Mobiel 
-) value ( 'Venco', 'Bert van Linge', 'L1029384719', '06-28493827'
-),( 'Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734'
-),( 'Haribo', 'Sven Stalman ', 'L1029324748', '06-24383291'
-),( 'Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823'
-),( 'De Bron', 'Remco Veenstra ', 'L1023857736', '06-34291234'
-),( 'Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456'
+) VALUES ( 1, 'Venco', 'Bert van Linge', 'L1029384719', '06-28493827'
+),( 2, 'Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734'
+),( 3, 'Haribo', 'Sven Stalman ', 'L1029324748', '06-24383291'
+),( 4, 'Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823'
+),( 5, 'De Bron', 'Remco Veenstra ', 'L1023857736', '06-34291234' 
+),( 6, 'Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456'
 );
 
 
