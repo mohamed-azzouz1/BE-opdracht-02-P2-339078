@@ -69,7 +69,7 @@ class leverancierupdate extends BaseController
                 // Toon een bevestigingsmelding
                 $_SESSION['leverancier_message'] = 'De wijzigingen zijn succesvol doorgevoerd';
                 // Redirect na 3 seconden
-                header("refresh:3;" . URLROOT . "leverancierupdate/levrancier_details/" . $data['Id']);
+                header("refresh:3;url" . URLROOT . "/leverancier/details/" . $id);
             } else {
                 die('Er is iets misgegaan bij het bijwerken van de gegevens');
             }

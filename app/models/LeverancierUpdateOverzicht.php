@@ -64,7 +64,7 @@ class   LeverancierUpdateOverzicht
     }
     public function updateLeverancier($data) {
         try {
-            $sql = "CALL spUpdateLeverancier(:Id, :Naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
+            $sql = "CALL sss(:Id, :Naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
             $this->db->query($sql);
             $this->db->bind(':Id', $data['Id'], PDO::PARAM_INT);
             $this->db->bind(':Naam', $data['Naam'], PDO::PARAM_STR);
@@ -73,7 +73,7 @@ class   LeverancierUpdateOverzicht
             $this->db->bind(':Mobiel', $data['Mobiel'], PDO::PARAM_STR);
             $this->db->execute();
 
-            $sql = "CALL spUpdateLeverancierContact(:ContactId, :Straat, :Huisnummer, :Postcode, :Stad)";
+            $sql = "CALL sss(:ContactId, :Straat, :Huisnummer, :Postcode, :Stad)";
             $this->db->query($sql);
             $this->db->bind(':ContactId', $data['ContactId'], PDO::PARAM_INT);
             $this->db->bind(':Straat', $data['Straat'], PDO::PARAM_STR);
@@ -89,7 +89,7 @@ class   LeverancierUpdateOverzicht
             return false;
         }
     }
-    
+
     public function getTotalLeveranciers() {
         try {
             $sql = "SELECT COUNT(*) as total FROM Leverancier";
