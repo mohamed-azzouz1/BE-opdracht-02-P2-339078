@@ -66,20 +66,20 @@ class   LeverancierUpdateOverzicht
         try {
             $sql = "CALL spUpdateLeverancier(:Id, :Naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
             $this->db->query($sql);
-            $this->db->bind(':Id', $data['Id']);
-            $this->db->bind(':Naam', $data['Naam']);
-            $this->db->bind(':ContactPersoon', $data['ContactPersoon']);
-            $this->db->bind(':LeverancierNummer', $data['LeverancierNummer']);
-            $this->db->bind(':Mobiel', $data['Mobiel']);
+            $this->db->bind(':Id', $data['Id'], PDO::PARAM_INT);
+            $this->db->bind(':Naam', $data['Naam'], PDO::PARAM_STR);
+            $this->db->bind(':ContactPersoon', $data['ContactPersoon'], PDO::PARAM_STR);
+            $this->db->bind(':LeverancierNummer', $data['LeverancierNummer'], PDO::PARAM_STR);
+            $this->db->bind(':Mobiel', $data['Mobiel'], PDO::PARAM_STR);
             $this->db->execute();
 
-            $sql = "CALL spUpdateLeverancierContact(:contactId, :Straat, :huisnummer, :postcode, :stad)";
+            $sql = "CALL spUpdateLeverancierContact(:ContactId, :Straat, :Huisnummer, :Postcode, :Stad)";
             $this->db->query($sql);
-            $this->db->bind(':contactId', $data['contactId']);
-            $this->db->bind(':Straat', $data['Straat']);
-            $this->db->bind(':huisnummer', $data['huisnummer']);
-            $this->db->bind(':postcode', $data['postcode']);
-            $this->db->bind(':stad', $data['stad']);
+            $this->db->bind(':ContactId', $data['ContactId'], PDO::PARAM_INT);
+            $this->db->bind(':Straat', $data['Straat'], PDO::PARAM_STR);
+            $this->db->bind(':Huisnummer', $data['Huisnummer'], PDO::PARAM_STR);
+            $this->db->bind(':Postcode', $data['Postcode'], PDO::PARAM_STR);
+            $this->db->bind(':Stad', $data['Stad'], PDO::PARAM_STR);
             $this->db->execute();
 
             return true;
@@ -89,4 +89,29 @@ class   LeverancierUpdateOverzicht
             return false;
         }
     }
+    
+    public function getTotalLeveranciers() {
+        try {
+            $sql = "SELECT COUNT(*) as total FROM Leverancier";
+            $this->db->query($sql);
+            return $this->db->single()->total;
+        } catch (Exception $e) {
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            return 0;
+        }
+    }
+    
+    public function getLeveranciersByPage($start, $limit) {
+        try {
+            $sql = "SELECT * FROM Leverancier LIMIT :start, :limit";
+            $this->db->query($sql);
+            $this->db->bind(':start', $start, PDO::PARAM_INT);
+            $this->db->bind(':limit', $limit, PDO::PARAM_INT);
+            return $this->db->resultSet();
+        } catch (Exception $e) {
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            return [];
+        }
+    }
+
 }

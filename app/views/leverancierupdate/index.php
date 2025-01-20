@@ -45,12 +45,12 @@
                               foreach ($data['dataRows'] as $leverancierUpdate) {
                                 ?>
                                 <tr>
-                                <td><?= $leverancierUpdate->LeverancierNaam ?></td>
+                                <td><?= $leverancierUpdate->naam ?></td>
                                 <td><?= $leverancierUpdate->ContactPersoon ?></td>
                                 <td><?= $leverancierUpdate->LeverancierNummer ?></td>
                                 <td><?= $leverancierUpdate->Mobiel ?></td>
                                 <td class='text-center'>
-                                <a href="<?= URLROOT; ?>/leverancierupdate/edit/<?= $leverancierUpdate->LeverancierId; ?>">
+                                <a href="<?= URLROOT; ?>/leverancierupdate/edit/<?= $leverancierUpdate->Id; ?>">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 </td>            
@@ -58,9 +58,13 @@
                     <?php } } ?>
                 </tbody>
             </table>
-            <nav>
+            <nav aria-label="Page navigation">
         <ul class="pagination">
-           
+            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                <li class="page-item <?= ($i == $data['currentPage']) ? 'active' : ''; ?>">
+                    <a class="page-link" href="<?= URLROOT; ?>/leverancierupdate/index/<?= $i; ?>"><?= $i; ?></a>
+                </li>
+            <?php endfor; ?>
         </ul>
     </nav>
             <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>

@@ -10,39 +10,33 @@ class leverancierupdate extends BaseController
         $this->LevarancierupdateModel = $this->model('LeverancierUpdateOverzicht');
     }
 
-    public function index()
-    {
-        /**
-         * Met het $data-array geef ik informatie mee vanuit de controller
-         * naar de view
-         */
+    public function index($page = 1) {
+        $limit = 4;
+        $start = ($page - 1) * $limit;
+        $totalLeveranciers = $this->LevarancierupdateModel->getTotalLeveranciers();
+        $leveranciers = $this->LevarancierupdateModel->getLeveranciersByPage($start, $limit);
+        $totalPages = ceil($totalLeveranciers / $limit);
+
         $data = [
-            'title' => 'Update Leverancier Jamin'
-            ,'dataRows' => ''
-            ,'message' => ''
-            ,'messageColor' => ''
-            ,'messageVisibility' => ''
+            'title' => 'Update Leverancier Jamin',
+            'leveranciers' => $leveranciers,
+            'currentPage' => $page,
+            'totalPages' => $totalPages,
+            'dataRows' => $leveranciers,
+            'message' => '',
+            'messageColor' => '',
+            'messageVisibility' => ''
         ];
-
-        $leverancierupdateOverzicht = $this->LevarancierupdateModel->getleverancierupdateOverzicht();
-
-        if (is_null($leverancierupdateOverzicht)) {
+        if (is_null($leveranciers)) {
             $data['message'] = "Er is een fout opgetreden";
             $data['messageColor'] = "danger";
             $data['messageVisibility'] = "flex";
-            $data['dataRows'] = NULL;
-
-            // header('Refresh:3; ' . URLROOT . '/homepages/index');
-        } else {
-            $data['dataRows'] = $leverancierupdateOverzicht;
+            $data['leveranciers'] = NULL;
         }
-        /**
-         * Met de view-method uit de BaseController-class roep je de
-         * view aan en geef je de informatie uit het $data-array mee aan
-         * de view
-         */
+
         $this->view('leverancierupdate/index', $data);
     }
+
     public function edit($id) {
         $leverancier = $this->LevarancierupdateModel->getLeverancierById($id);
         $contact = $this->LevarancierupdateModel->getContactById($leverancier->ContactId);
@@ -57,32 +51,33 @@ class leverancierupdate extends BaseController
 
     public function update($id) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Haal de gegevens op uit het formulier
+            // Haal de gegevens op uit het formulier en controleer op null-waarden
             $data = [
                 'Id' => $id,
-                'Naam' => trim($_POST['Naam']),
-                'ContactPersoon' => trim($_POST['ContactPersoon']),
-                'LeverancierNummer' => trim($_POST['LeverancierNummer']),
-                'Mobiel' => trim($_POST['Mobiel']),
-                'Straat' => trim($_POST['Straat']),
-                'Huisnummer' => trim($_POST['Huisnummer']),
-                'Postcode' => trim($_POST['Postcode']),
-                'Stad' => trim($_POST['Stad']),
-                'contactId' => $this->LevarancierupdateModel->getContactById($id)->Id
-
+                'Naam' => isset($_POST['Naam']) ? trim($_POST['Naam']) : '',
+                'ContactPersoon' => isset($_POST['ContactPersoon']) ? trim($_POST['ContactPersoon']) : '',
+                'LeverancierNummer' => isset($_POST['LeverancierNummer']) ? trim($_POST['LeverancierNummer']) : '',
+                'Mobiel' => isset($_POST['Mobiel']) ? trim($_POST['Mobiel']) : '',
+                'Straat' => isset($_POST['Straat']) ? trim($_POST['Straat']) : '',
+                'Huisnummer' => isset($_POST['Huisnummer']) ? trim($_POST['Huisnummer']) : '',
+                'Postcode' => isset($_POST['Postcode']) ? trim($_POST['Postcode']) : '',
+                'Stad' => isset($_POST['Stad']) ? trim($_POST['Stad']) : '',
+                'ContactId' => $this->LevarancierupdateModel->getContactById($id)->Id
             ];
-    
             // Update de leverancier in de database
             if ($this->LevarancierupdateModel->updateLeverancier($data)) {
                 // Toon een bevestigingsmelding
-                $_SESSION['leverancier_message'] = 'De wijzigingen zijn doorgevoerd';
+                $_SESSION['leverancier_message'] = 'De wijzigingen zijn succesvol doorgevoerd';
                 // Redirect na 3 seconden
-                header("refresh:3;url=" . URLROOT . "/leverancier/details/" . $id);
+                header("refresh:3;" . URLROOT . "leverancierupdate/levrancier_details/" . $data['Id']);
+            } else {
+                die('Er is iets misgegaan bij het bijwerken van de gegevens');
             }
         } else {
             // Haal de huidige gegevens van de leverancier op
             $leverancier = $this->LevarancierupdateModel->getLeverancierById($id);
             $contact = $this->LevarancierupdateModel->getContactById($leverancier->ContactId);
+
             $data = [
                 'leverancier' => $leverancier,
                 'contact' => $contact

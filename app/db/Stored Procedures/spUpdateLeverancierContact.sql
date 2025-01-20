@@ -5,20 +5,20 @@ DROP PROCEDURE IF EXISTS spUpdateLeverancierContact;
 DELIMITER //
 
 CREATE PROCEDURE spUpdateLeverancierContact(
-    IN contactId INT,
-    IN straat VARCHAR(255),
-    IN huisnummer VARCHAR(10),
-    IN postcode VARCHAR(10),
-    IN stad VARCHAR(255)
+    IN GIVcontactId INT,
+    IN GIVstraat VARCHAR(255),
+    IN GIVhuisnummer VARCHAR(10),
+    IN GIVpostcode VARCHAR(10),
+    IN GIVstad VARCHAR(255)
 )
 BEGIN
     UPDATE Contact 
     SET 
-        Straat = straat, 
-        Huisnummer = huisnummer, 
-        Postcode = postcode, 
-        Stad = stad 
-    WHERE Id = contactId;
+        Straat = GIVstraat, 
+        Huisnummer = GIVhuisnummer, 
+        Postcode = GIVpostcode, 
+        Stad = GIVstad 
+    WHERE Id = GIVcontactId;
 END //
 
 DELIMITER ;

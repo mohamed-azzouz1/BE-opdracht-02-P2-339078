@@ -1,9 +1,10 @@
+<!-- filepath: /c:/Users/moham/OneDrive - MBO Utrecht/leerjaar 2/us realiseer/periode 2/jamin mohamed azzouz/app/views/leverancierupdate/leverancier_update.php -->
 <div class="container">
     <h2>Wijzig Leveranciergegevens</h2>
-    <form action="<?= URLROOT; ?>/leverancier/update/<?= $data['leverancier']->Id; ?>" method="post">
+    <form action="<?= URLROOT; ?>/leverancierupdate/update/<?= $data['leverancier']->Id; ?>" method="post">
         <div class="form-group">
-            <label for="naam">Naam</label>
-            <input type="text" name="naam" class="form-control" value="<?= $data['leverancier']->naam; ?>">
+            <label for="Naam">Naam</label>
+            <input type="text" name="Naam" class="form-control" value="<?= $data['leverancier']->naam; ?>">
         </div>
         <div class="form-group">
             <label for="ContactPersoon">Contactpersoon</label>
@@ -22,20 +23,21 @@
             <input type="text" name="Straat" class="form-control" value="<?= $data['contact']->Straat; ?>">
         </div>
         <div class="form-group">
-            <label for="huisnummer">huisnummer</label>
-            <input type="text" name="huisnummer" class="form-control" value="<?= $data['contact']->Huisnummer; ?>">
+            <label for="Huisnummer">Huisnummer</label>
+            <input type="text" name="Huisnummer" class="form-control" value="<?= $data['contact']->Huisnummer; ?>">
         </div>
         <div class="form-group">
-            <label for="postcode">postcode</label>
-            <input type="text" name="postcode" class="form-control" value="<?= $data['contact']->Postcode; ?>">
+            <label for="Postcode">Postcode</label>
+            <input type="text" name="Postcode" class="form-control" value="<?= $data['contact']->Postcode; ?>">
         </div>
         <div class="form-group">
-            <label for="stad">stad</label>
-            <input type="text" name="stad" class="form-control" value="<?= $data['contact']->Stad; ?>">
+            <label for="Stad">Stad</label>
+            <input type="text" name="Stad" class="form-control" value="<?= $data['contact']->Stad; ?>">
         </div>
         <button type="submit" class="btn btn-success">Sla op</button>
-        
-        <a href='<?= URLROOT; ?>/leverancierupdate/edit/<?= $data['leverancier']->Id;?>'>terug</a>
-        <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>
+        <div>
+            <a href='<?= URLROOT; ?>/leverancierupdate/edit/<?= $data['leverancier']->Id;?>' class="btn btn-primary">terug</a>
+            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-primary">Homepage</a>
+        </div>
     </form>
 </div>
