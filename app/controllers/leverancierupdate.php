@@ -64,7 +64,10 @@ class leverancierupdate extends BaseController
                 'ContactPersoon' => trim($_POST['ContactPersoon']),
                 'LeverancierNummer' => trim($_POST['LeverancierNummer']),
                 'Mobiel' => trim($_POST['Mobiel']),
-                'Straat' => trim($_POST['Straat'])
+                'Straat' => trim($_POST['Straat']),
+                'Huisnummer' => trim($_POST['Huisnummer']),
+                'Postcode' => trim($_POST['Postcode']),
+                'Stad' => trim($_POST['Stad'])
             ];
     
             // Update de leverancier in de database
@@ -80,7 +83,6 @@ class leverancierupdate extends BaseController
             // Haal de huidige gegevens van de leverancier op
             $leverancier = $this->LevarancierupdateModel->getLeverancierById($id);
             $contact = $this->LevarancierupdateModel->getContactById($leverancier->ContactId);
-    
             $data = [
                 'leverancier' => $leverancier,
                 'contact' => $contact

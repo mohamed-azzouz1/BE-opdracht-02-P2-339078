@@ -62,4 +62,31 @@ class   LeverancierUpdateOverzicht
             logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
         }
     }
+    public function updateLeverancier($data) {
+        try {
+            $sql = "CALL spUpdateLeverancier(:id, :naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
+            $this->db->query($sql);
+            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':naam', $data['naam']);
+            $this->db->bind(':ContactPersoon', $data['ContactPersoon']);
+            $this->db->bind(':LeverancierNummer', $data['LeverancierNummer']);
+            $this->db->bind(':Mobiel', $data['Mobiel']);
+            $this->db->execute();
+
+            $sql = "CALL spUpdateContact((SELECT ContactId FROM Leverancier WHERE Id = :id), :Straat, :huisnummer, :postcode, :stad)";
+            $this->db->query($sql);
+            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':Straat', $data['Straat']);
+            $this->db->bind(':huisnummer', $data['huisnummer']);
+            $this->db->bind(':postcode', $data['postcode']);
+            $this->db->bind(':stad', $data['stad']);
+            $this->db->execute();
+
+            return true;
+
+        } catch (Exception $e) {
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
+            return false;
+        }
+    }
 }

@@ -11,5 +11,8 @@
     <p>Leveranciernummer: <?= $data['leverancier']->LeverancierNummer; ?></p>
     <p>Mobiel: <?= $data['leverancier']->Mobiel; ?></p>
     <p>Straat: <?= $data['contact']->Straat; ?></p>
+    <p>Huisnummer: <?= $data['contact']->Huisnummer; ?></p>
+    <p>Postcode: <?= $data['contact']->Postcode; ?></p>
+    <p>Stad: <?= $data['contact']->Stad; ?></p>
     <a href="<?= URLROOT; ?>/leverancierupdate/update/<?= $data['leverancier']->Id; ?>" class="btn btn-primary">Wijzig</a>
 </div>

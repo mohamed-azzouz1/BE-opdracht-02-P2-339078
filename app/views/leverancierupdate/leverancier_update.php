@@ -21,6 +21,18 @@
             <label for="Straat">Straat</label>
             <input type="text" name="Straat" class="form-control" value="<?= $data['contact']->Straat; ?>">
         </div>
+        <div class="form-group">
+            <label for="huisnummer">huisnummer</label>
+            <input type="text" name="huisnummer" class="form-control" value="<?= $data['contact']->Huisnummer; ?>">
+        </div>
+        <div class="form-group">
+            <label for="postcode">postcode</label>
+            <input type="text" name="postcode" class="form-control" value="<?= $data['contact']->Postcode; ?>">
+        </div>
+        <div class="form-group">
+            <label for="stad">stad</label>
+            <input type="text" name="stad" class="form-control" value="<?= $data['contact']->Stad; ?>">
+        </div>
         <button type="submit" class="btn btn-success">Sla op</button>
     </form>
 </div>
