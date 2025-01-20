@@ -75,7 +75,7 @@ class leverancierupdate extends BaseController
                 'contact' => $contact
             ];
     
-            $this->view('leverancier/edit', $data);
+            $this->view('leverancierupdate/levrancier_details', $data);
         }
     }
 }

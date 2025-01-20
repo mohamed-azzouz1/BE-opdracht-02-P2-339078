@@ -12,9 +12,9 @@ class   LeverancierUpdateOverzicht
          */
         $this->db = new Database();
     }
+    
 
-    public function getleverancierupdateOverzicht()
-    {
+    public function getleverancierupdateOverzicht() {
         try {
             $sql = "CALL spReadLeverancierUpdateOverzicht()";
 
@@ -26,7 +26,7 @@ class   LeverancierUpdateOverzicht
             /**
              * Log de error in de functie logger()
              */
-            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());            
+            logger(__LINE__, __METHOD__, __FILE__, $e->getMessage());
         }
     }
 }
