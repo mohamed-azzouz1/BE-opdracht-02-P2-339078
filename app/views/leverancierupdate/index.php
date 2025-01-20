@@ -50,14 +50,19 @@
                                 <td><?= $leverancierUpdate->LeverancierNummer ?></td>
                                 <td><?= $leverancierUpdate->Mobiel ?></td>
                                 <td class='text-center'>
-                                    <a href='<?= URLROOT . "/leverancieroverzicht/LeverantieProductinfo/{$leverancierUpdate->LeverancierId}" ?>'>
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
+                                <a href="<?= URLROOT; ?>/leverancierupdate/levrancier_details/<?= $leverancierUpdate->LeverancierId; ?>">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
                                 </td>            
                                 </tr>
                     <?php } } ?>
                 </tbody>
             </table>
+            <nav>
+        <ul class="pagination">
+           
+        </ul>
+    </nav>
             <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>
         </div>
         <div class="col-2"></div>

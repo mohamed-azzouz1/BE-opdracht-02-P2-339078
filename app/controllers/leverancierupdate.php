@@ -1,5 +1,6 @@
 <?php
 
+
 class leverancierupdate extends BaseController
 {
     private $LevarancierupdateModel;
@@ -41,5 +42,40 @@ class leverancierupdate extends BaseController
          * de view
          */
         $this->view('leverancierupdate/index', $data);
+    }
+
+    public function update($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Haal de gegevens op uit het formulier
+            $data = [
+                'id' => $id,
+                'naam' => trim($_POST['naam']),
+                'ContactPersoon' => trim($_POST['ContactPersoon']),
+                'LeverancierNummer' => trim($_POST['LeverancierNummer']),
+                'Mobiel' => trim($_POST['Mobiel']),
+                'Straat' => trim($_POST['Straat'])
+            ];
+    
+            // Update de leverancier in de database
+            if ($this->LevarancierupdateModel->updateLeverancier($data)) {
+                // Toon een bevestigingsmelding
+                $_SESSION['leverancier_message'] = 'De wijzigingen zijn doorgevoerd';
+                // Redirect na 3 seconden
+                header("refresh:3;url=" . URLROOT . "/leverancier/details/" . $id);
+            } else {
+                die('Er is iets misgegaan');
+            }
+        } else {
+            // Haal de huidige gegevens van de leverancier op
+            $leverancier = $this->LevarancierupdateModel->getLeverancierById($id);
+            $contact = $this->LevarancierupdateModel->getContactById($leverancier->ContactId);
+    
+            $data = [
+                'leverancier' => $leverancier,
+                'contact' => $contact
+            ];
+    
+            $this->view('leverancier/edit', $data);
+        }
     }
 }
