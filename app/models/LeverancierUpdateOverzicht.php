@@ -64,18 +64,18 @@ class   LeverancierUpdateOverzicht
     }
     public function updateLeverancier($data) {
         try {
-            $sql = "CALL spUpdateLeverancier(:id, :naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
+            $sql = "CALL spUpdateLeverancier(:Id, :Naam, :ContactPersoon, :LeverancierNummer, :Mobiel)";
             $this->db->query($sql);
-            $this->db->bind(':id', $data['id']);
-            $this->db->bind(':naam', $data['naam']);
+            $this->db->bind(':Id', $data['Id']);
+            $this->db->bind(':Naam', $data['Naam']);
             $this->db->bind(':ContactPersoon', $data['ContactPersoon']);
             $this->db->bind(':LeverancierNummer', $data['LeverancierNummer']);
             $this->db->bind(':Mobiel', $data['Mobiel']);
             $this->db->execute();
 
-            $sql = "CALL spUpdateContact((SELECT ContactId FROM Leverancier WHERE Id = :id), :Straat, :huisnummer, :postcode, :stad)";
+            $sql = "CALL spUpdateLeverancierContact(:contactId, :Straat, :huisnummer, :postcode, :stad)";
             $this->db->query($sql);
-            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':contactId', $data['contactId']);
             $this->db->bind(':Straat', $data['Straat']);
             $this->db->bind(':huisnummer', $data['huisnummer']);
             $this->db->bind(':postcode', $data['postcode']);

@@ -59,15 +59,17 @@ class leverancierupdate extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Haal de gegevens op uit het formulier
             $data = [
-                'id' => $id,
-                'naam' => trim($_POST['naam']),
+                'Id' => $id,
+                'Naam' => trim($_POST['Naam']),
                 'ContactPersoon' => trim($_POST['ContactPersoon']),
                 'LeverancierNummer' => trim($_POST['LeverancierNummer']),
                 'Mobiel' => trim($_POST['Mobiel']),
                 'Straat' => trim($_POST['Straat']),
                 'Huisnummer' => trim($_POST['Huisnummer']),
                 'Postcode' => trim($_POST['Postcode']),
-                'Stad' => trim($_POST['Stad'])
+                'Stad' => trim($_POST['Stad']),
+                'contactId' => $this->LevarancierupdateModel->getContactById($id)->Id
+
             ];
     
             // Update de leverancier in de database
@@ -76,8 +78,6 @@ class leverancierupdate extends BaseController
                 $_SESSION['leverancier_message'] = 'De wijzigingen zijn doorgevoerd';
                 // Redirect na 3 seconden
                 header("refresh:3;url=" . URLROOT . "/leverancier/details/" . $id);
-            } else {
-                die('Er is iets misgegaan');
             }
         } else {
             // Haal de huidige gegevens van de leverancier op
