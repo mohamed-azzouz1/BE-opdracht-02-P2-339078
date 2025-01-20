@@ -43,6 +43,17 @@ class leverancierupdate extends BaseController
          */
         $this->view('leverancierupdate/index', $data);
     }
+    public function edit($id) {
+        $leverancier = $this->LevarancierupdateModel->getLeverancierById($id);
+        $contact = $this->LevarancierupdateModel->getContactById($leverancier->ContactId);
+
+        $data = [
+            'leverancier' => $leverancier,
+            'contact' => $contact
+        ];
+
+        $this->view('leverancierupdate/levrancier_details', $data);
+    }
 
     public function update($id) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -75,7 +86,7 @@ class leverancierupdate extends BaseController
                 'contact' => $contact
             ];
     
-            $this->view('leverancierupdate/levrancier_details', $data);
+            $this->view('leverancierupdate/', $data);
         }
     }
 }

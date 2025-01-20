@@ -6,9 +6,11 @@
         </div>
         <?php unset($_SESSION['leverancier_message']); ?>
     <?php endif; ?>
+    ($data['dataRows'] as $leverancierUpdate)
     <p>Naam: <?= $data['leverancier']->naam; ?></p>
     <p>Contactpersoon: <?= $data['leverancier']->ContactPersoon; ?></p>
     <p>Leveranciernummer: <?= $data['leverancier']->LeverancierNummer; ?></p>
     <p>Mobiel: <?= $data['leverancier']->Mobiel; ?></p>
-    <a href="<?= URLROOT; ?>/leverancier/edit/<?= $data['leverancier']->Id; ?>" class="btn btn-primary">Wijzig</a>
+    <p>Straat: <?= $data['contact']->Straat; ?></p>
+    <a href="<?= URLROOT; ?>/leverancierupdate/leverancier_update/<?= $data['leverancier']->Id; ?>" class="btn btn-primary">Wijzig</a>
 </div>
