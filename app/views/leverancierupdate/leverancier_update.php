@@ -34,5 +34,8 @@
             <input type="text" name="stad" class="form-control" value="<?= $data['contact']->Stad; ?>">
         </div>
         <button type="submit" class="btn btn-success">Sla op</button>
+        
+        <a href='<?= URLROOT; ?>/leverancierupdate/edit/<?= $data['leverancier']->Id;?>'>terug</a>
+        <a href="<?= URLROOT; ?>/homepages/index">Homepage</a>
     </form>
 </div>
